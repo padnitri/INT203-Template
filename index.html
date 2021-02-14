@@ -2,35 +2,52 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basic Vue Js - HelloWorld App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>073 Food Gallery</title>
 
-  <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
-  <!-- Using via Google Web Fonts -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- https://google.github.io/material-design-icons/#icon-font-for-the-web -->
+    <!-- Using via Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
-  <!-- https://tailwindcss.com/docs/installation -->
-  <!-- Using Tailwind via CDN -->
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <!-- https://tailwindcss.com/docs/installation -->
+    <!-- Using Tailwind via CDN -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 
-  <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
-  <!-- Vue CDN -->
-  <script src="https://unpkg.com/vue@next"></script>
+    <!-- https://v3.vuejs.org/guide/installation.html#release-notes -->
+    <!-- Vue CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
 
+    <!-- font decoration -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;600;700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div id="app" class="h-screen w-full bg-gray-200 flex items-start justify-start">
-    <img src="./images/1.jpg" class="w-1/3 h-full">
-    <div class="w-full flex items-center justify-end">
-      <i class="material-icons">face</i>
-      <p class="font-semibold text-xl tracking-wider uppercase px-3"> {{ msg }}</p>
-    </div>
-  </div>
+<body style="font-family: 'Oswald', sans-serif; color:darkblue;">
+    <div id="app" class="max-w-xl mx-auto my-10 space-y-3">
+        <p class="text-xl font-bold">Photo({{ calculate }}) </p>
+    <p class="text-xl font-bold">Favorite: ({{favCount}})</p>
+        <ul>
+            <li v-for="(task,index) in tasks" class="flex-col p-10">
+            
+                <p style="color: brown; font-weight: bolder;"> {{task.name}}</p>
+                <img :src="task.img" v-show="task.done" class="w-max">
 
-  <!-- my main.js -->
-  <script src="./main.js"></script>
+            <!-- <img :src="task.img" class="w-3/5"> -->
+            </br>
+
+            <button v-on:click="toggleDone(index)" class="material-icons justify-self-end">
+                remove_red_eye </button>
+
+              
+               <button v-if="task.isFav" class="material-icons" @click="updateFav(index)"> favorite </button>
+               <button v-else class="material-icons" @click="updateFav(index)"> favorite_border</button>
+
+            </li>
+        </ul>
+    </div>
+
+    <!-- my main.js -->
+    <script src="./main.js"></script>
 </body>
 
 </html>
